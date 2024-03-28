@@ -1,14 +1,15 @@
 pipeline {
      agent any
-     def apiKey = env.TRELLO_API_KEY
+environment {
+ def apiKey = env.TRELLO_API_KEY
      def token = env.TRELLO_TOKEN
 
- def url = "https://api.trello.com/1/members/me/boards?key=${apiKey}&token=${token}"
-
-     stages {
-         
+}
+ stages {
         stage('Running collection') {
             steps {
+ def url = "https://api.trello.com/1/members/me/boards?key=${apiKey}&token=${token}"
+
                 sh 'newman --version'
                 sh 'newman run a_TrelloAPI.postman_collection.json -e Trelloenv.postman_environment.json --disable-unicode --reporters cli,htmlextra,junit --reporter-htmlextra-export newman/report.html --reporter-junit-export newman/report.xml'
             }
