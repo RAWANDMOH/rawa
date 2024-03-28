@@ -1,6 +1,10 @@
 pipeline {
      agent any
-     
+     def apiKey = env.TRELLO_API_KEY
+     def token = env.TRELLO_TOKEN
+
+ def url = "https://api.trello.com/1/members/me/boards?key=${apiKey}&token=${token}"
+
      stages {
          
         stage('Running collection') {
