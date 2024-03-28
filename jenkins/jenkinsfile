@@ -1,29 +1,36 @@
 pipeline {
-     agent any
- stages {
+  agent any
 
-        stage('Running collection') {
-            steps {
-                sh 'newman --version'
-                sh 'newman run a_TrelloAPI.postman_collection.json --disable-unicode --reporters cli,htmlextra,junit --reporter-htmlextra-export newman/report.html --reporter-junit-export newman/report.xml'
-            }
+  tools {nodejs "node"}
+
+  stages {
+
+    stage('Git- Get the project') { // for display purposes
+        steps {
+          // Get some code from a GitHub repository
+          git 'https://github.com/RAWANDMOH/rawa.git'
         }
-}
-        post {
-        always {
-            publishHTML target: [
-                reportName: 'Newman',
-                reportDir: 'newman',
-                reportFiles: 'report.html',
-                reportTitles: 'Postman API tests',
-                keepAll: true,
-                alwaysLinkToLastBuild: true,
-                allowMissing: false
-            ]
-           junit skipPublishingChecks: true, testResults: 'newman/report.xml'
+   }
+
+
+    stage('Install newman') {
+      tools {maven "maven"}
+      steps {
+        sh 'mvn -version'
+        sh 'echo WE ARE STARTING THE TEST ...'
+        sh 'npm install -g newman'
+        withMaven(maven: 'maven'){
+            sh 'mvn -version'
 
         }
+      }
     }
-    
-}
 
+    stage('Run test') {
+      steps {
+        sh 'newman -v'
+        sh 'newman run a_TrelloAPI.postman_collection.json'
+      }
+    }
+  }
+}
