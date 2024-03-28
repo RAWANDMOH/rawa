@@ -3,7 +3,7 @@ name: Your Workflow
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   your-job:
@@ -17,14 +17,11 @@ jobs:
         env:
           TRELLO_API_KEY: ${{ secrets.KEY }}
           TRELLO_TOKEN: ${{ secrets.TOKEN }}
-          TRELLO_BASE: ${{secrets.BASEURL}}
         run: |
           echo "TRELLO_API_KEY=${TRELLO_API_KEY}" >> $GITHUB_ENV
           echo "TRELLO_TOKEN=${TRELLO_TOKEN}" >> $GITHUB_ENV
-          echo " TRELLO_BASE=${ TRELLO_BASE}" >> $GITHUB_ENV
       # Now you can use these variables in your subsequent steps
       - name: Use the variables
         run: |
           echo "Trello API Key: $TRELLO_API_KEY"
           echo "Trello Token: $TRELLO_TOKEN"
-           echo "Trello baseurl: $TRELLO_BASE"
