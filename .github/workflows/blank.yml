@@ -1,0 +1,28 @@
+name: Your Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  your-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up environment variables
+        env:
+          key: ${{ secrets.TRELLO_KEY }}
+          token: ${{ secrets.TRELLO_TOKEN }}
+        run: |
+          echo "TRELLO_API_KEY=${TRELLO_API_KEY}" >> $GITHUB_ENV
+          echo "TRELLO_TOKEN=${TRELLO_TOKEN}" >> $GITHUB_ENV
+
+      # Now you can use these variables in your subsequent steps
+      - name: Use the variables
+        run: |
+          echo "Trello Key: $TRELLO_KEY"
+          echo "Trello Token: $TRELLO_TOKEN"
