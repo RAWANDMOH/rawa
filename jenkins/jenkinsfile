@@ -3,12 +3,6 @@ pipeline {
      
      stages {
          
-         stage('Install Dependencies') {
-             steps {
-                 // Install Node.js and Newman globally
-                 sh 'npm install'
-             }
-         }
         stage('Running collection') {
             steps {
                 sh 'newman --version'
