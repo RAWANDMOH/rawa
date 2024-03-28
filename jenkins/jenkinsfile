@@ -4,8 +4,8 @@ pipeline {
      stages {
          stage('Checkout') {
              steps {
-                  'https://github.com/RAWANDMOH/rawa.git' 
-                 checkout scm
+                url:  'https://github.com/RAWANDMOH/rawa.git' 
+
              }
          }
          
