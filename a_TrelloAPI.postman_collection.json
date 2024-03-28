@@ -21,9 +21,9 @@
 							"pm.test('id', () => {\r",
 							"const response = pm.response.json();\r",
 							"//pm.expect(response.id).t\r",
-							"pm.environment.set(\"boardId\",response[0].id);\r",
+							"pm.globals.set(\"boardId\",response[0].id);\r",
 							"const existingBoardId = response.map(response => response.id);\r",
-							"pm.environment.set(\"existingBoardId\",existingBoardId);\r",
+							"pm.globals.set(\"existingBoardId\",existingBoardId);\r",
 							"\r",
 							"}); "
 						],
@@ -36,7 +36,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://api.trello.com/1/members/me/boards?key={{$TRELLO_API_KEY}}&token={{$TRELLO_TOKEN}}",
+					"raw": "https://api.trello.com/1/members/me/boards?key={{trelloKey}}&token={{trelloToken}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -77,7 +77,7 @@
 							"pm.test('id', () => {\r",
 							"const response = pm.response.json();\r",
 							"//pm.expect(response.id).t\r",
-							"pm.environment.set(\"boarIqd\",response.id);\r",
+							"pm.globals.set(\"boarIqd\",response.id);\r",
 							"\r",
 							"});\r",
 							"\r",
@@ -217,7 +217,7 @@
 							"});\r",
 							"pm.test('list id', () => {\r",
 							"const response = pm.response.json();\r",
-							"pm.environment.set(\"todoListId\",response.id);\r",
+							"pm.globals.set(\"todoListId\",response.id);\r",
 							"});\r",
 							"/*\r",
 							"pm.test('TODO list is created', () => {\r",
@@ -281,11 +281,11 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.environment.set(\"name\",\"Sign-up for trello\");\r",
+							"pm.globals.set(\"name\",\"Sign-up for trello\");\r",
 							"\r",
 							"pm.test('list id', () => {\r",
 							"const response = pm.response.json();\r",
-							"pm.environment.set(\"doneListId\",response.id);\r",
+							"pm.globals.set(\"doneListId\",response.id);\r",
 							"});\r",
 							"/*\r",
 							"pm.test('Done list is created', () => {\r",
@@ -351,7 +351,7 @@
 							"\r",
 							"pm.test('list id', () => {\r",
 							"const response = pm.response.json();\r",
-							"pm.environment.set(\"cardId\",response.id);\r",
+							"pm.globals.set(\"cardId\",response.id);\r",
 							"});\r",
 							"/*\r",
 							"pm.test('Card is created', () => {\r",
@@ -697,6 +697,10 @@
 			"value": "",
 			"type": "string",
 			"disabled": true
+		},
+		{
+			"key": "boardNumber",
+			"value": ""
 		}
 	]
 }
