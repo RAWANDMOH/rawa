@@ -15,7 +15,7 @@ pipeline {
       steps {
         sh 'mvn -version'
         sh 'echo WE ARE STARTING THE TEST ...'
-        npm install -g newman
+        sh 'npm install -g newman'
       }
     }
 
