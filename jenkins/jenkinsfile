@@ -1,14 +1,26 @@
 pipeline {
-    agent any
-
-    stages {
+     agent any
+     
+     stages {
+         stage('Checkout') {
+             steps {
+                 // Checkout your repository, replace 'https://github.com/your/repo.git' with your repository URL
+                 checkout scm
+             }
+         }
+         
+         stage('Install Dependencies') {
+             steps {
+                 // Install Node.js and Newman globally
+                 sh 'npm install -g newman'
+             }
+         }
         stage('Running collection') {
             steps {
                 sh 'newman --version'
                 sh 'newman run a_TrelloAPI.postman_collection.json -e Trelloenv.postman_environment.json --disable-unicode --reporters cli,htmlextra,junit --reporter-htmlextra-export newman/report.html --reporter-junit-export newman/report.xml'
             }
         }
-    }
         post {
         always {
             publishHTML target: [
