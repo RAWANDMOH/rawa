@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-        docker { 
-            image 'postman/newman:5.2.0-alpine'
-        }
-}
+  agent any
   stages {
 
     stage('Git- Get the project') { // for display purposes
