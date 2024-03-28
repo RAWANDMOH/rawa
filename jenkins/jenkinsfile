@@ -15,13 +15,13 @@ pipeline {
       steps {
         sh 'mvn -version'
         sh 'echo WE ARE STARTING THE TEST ...'
-        sh 'npm install -g newman'
+        sh 'newman -v'
       }
     }
 
     stage('Run test') {
       steps {
-        sh 'newman -v'
+        
         sh 'newman run a_TrelloAPI.postman_collection.json'
       }
     }
