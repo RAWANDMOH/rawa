@@ -3,7 +3,7 @@ pipeline {
         docker { 
             image 'postman/newman_ubuntu1404:2.1.2'
         }
-
+}
   stages {
 
     stage('Git- Get the project') { // for display purposes
