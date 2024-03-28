@@ -5,7 +5,7 @@ pipeline {
         stage('Running collection') {
             steps {
                 sh 'newman --version'
-                sh 'newman run a_TrelloAPI.postman_collection.json -e Trelloenv.postman_environment.json --disable-unicode --reporters cli,htmlextra,junit --reporter-htmlextra-export newman/report.html --reporter-junit-export newman/report.xml'
+                sh 'newman run a_TrelloAPI.postman_collection.json --disable-unicode --reporters cli,htmlextra,junit --reporter-htmlextra-export newman/report.html --reporter-junit-export newman/report.xml'
             }
         }
 }
