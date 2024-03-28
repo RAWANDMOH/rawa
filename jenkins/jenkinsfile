@@ -4,7 +4,7 @@ pipeline {
      stages {
          stage('Checkout') {
              steps {
-                 // Checkout your repository, replace 'https://github.com/your/repo.git' with your repository URL
+                  'https://github.com/RAWANDMOH/rawa.git' 
                  checkout scm
              }
          }
