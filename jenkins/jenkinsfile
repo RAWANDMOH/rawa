@@ -21,7 +21,7 @@ pipeline {
     stage('Run test') {
       steps {
         
-        sh 'newman run a_TrelloAPI.postman_collection.json'
+        sh 'newman run a_TrelloAPI.postman_collection.json --environment Trelloenv.postman_environment.json --disable-unicode --reporters cli,htmlextra,junit --reporter-htmlextra-export newman/report.html --reporter-junit-export newman/report.xml'
       }
     }
   }
